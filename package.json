@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "jest": "jest",
+    "test": "npm run jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0"
   },
   "dependencies": {
     "express": "^4.16.3"
