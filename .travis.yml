@@ -1,4 +1,11 @@
 language: node_js
 node_js:
-  - "lts/*"
-  - "node"
+- lts/*
+- node
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU
+  app: duck-tools
+  on:
+    repo: duck-tools/site
