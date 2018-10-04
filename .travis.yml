@@ -1,10 +1,4 @@
 language: node_js
 node_js:
+- lts/*
 - node
-deploy:
-  provider: heroku
-  api_key:
-    secure: Pg9KNsJMChg+g5k/N2dkM822tDOqLGFa4ZJ3ROCN26vvOgvU4ajlKsyugzqiq2zDxL+IiCD0vNqP+wVJe6jIjytL+cmiYtPfU29Y4voFl6nFJhzXyIjKZj/fQbqVLDVl7n5+tqxe2U1OigsjZgytO3fYfpQ67NNh9pplmZIpijRt7WpBYnwoIYsYE/pOS42hZJhp4e4SJlcs3eE4HsXfmf2v+7mfpfsn76Tjoub+RWXU1dtYZF9oREYh30Z+n7L5ui6FqyRIcmclxZt/aiDPi5qO9pHIMhg6rsNIZGEsoaryVkVXZF72n62PPc4bkAsEDml0AYc2BygacGZoYhWhnANTV0ZQJSegxDlTziyy/XdCrCCrbnLjVQY+Q9xCpdP3Id1Jf8ic1p24xJ7/Dj3WJNyju8N54pYGGqBuHUJfMSq0V2NOmoniMkWVV+PSA0zAdaNRreHQusfThCWxQpcW3hVXcsOd2szGsGjEAyxU2OEvJSyoLbOz+aL/vVh2D26YWv0y89t8JWnHeNkVjrAlhoEWSfkBxYf7FxrgZjrQFeo/dgArN2Di9pEEXb5DCeubhStibiyOncaIlfOAWYF26YAsYNQgQ4uH/rS4a2eJoT5GVUPEOj8nR6j/PnDNXvRbh03kcInYLJhcMns/QpPkXwGUG3L8CnVTG6e9M57Y7J4=
-  app: duck-tools
-  on:
-    repo: duck-tools/site
