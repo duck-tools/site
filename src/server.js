@@ -1,6 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import path from 'path';
 import ServerApp from './ServerApp';
 
 const app = express();
@@ -21,6 +22,8 @@ function renderApp() {
     </html>
   `;
 }
+
+app.use('/assets', express.static(path.join('assets')));
 
 app.use((req, res) => res.send(renderApp()));
 

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "webpack --config webpack.client.js --mode=production",
     "build:server": "rollup -c rollup.config.js",
+    "heroku-postbuild": "npm run build",
     "jest": "jest",
     "start": "node index.js",
     "test": "npm run jest"
