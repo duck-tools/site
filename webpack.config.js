@@ -7,5 +7,6 @@ module.exports = {
       loader: 'babel-loader',
       include: [resolve(__dirname, './src')]
     }]
-  }
+  },
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'
 };

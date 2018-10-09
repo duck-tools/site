@@ -1,19 +1,23 @@
 import express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components';
 import path from 'path';
 import ServerApp from './ServerApp';
 
 const app = express();
 
 function renderApp() {
+  const sheet = new ServerStyleSheet();
   const App = React.createFactory(ServerApp);
-  const html = ReactDOM.renderToString(App());
+  const html = ReactDOM.renderToString(sheet.collectStyles(App()));
+  const tags = sheet.getStyleTags();
   return `
     <!DOCTYPE html>
     <html>
       <head>
         <title>Duck Tools</title>
+        ${tags}
       </head>
       <body>
         <div id="root">${html}</div>

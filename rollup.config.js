@@ -4,10 +4,24 @@ import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 
+const commonjsConfig = {
+  include: 'node_modules/**',
+  namedExports: {
+    'node_modules/react/index.js': [
+      'cloneElement',
+      'Component',
+      'createElement'
+    ],
+    'node_modules/react-is/index.js': [
+      'isValidElementType'
+    ]
+  }
+};
+
 let plugins = [
   babel(),
   resolve(),
-  commonjs()
+  commonjs(commonjsConfig)
 ];
 
 if (process.env.NODE_ENV === 'production') {
@@ -17,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
     replace({
       ['process.env.NODE_ENV']: JSON.stringify('production')
     }),
-    commonjs(),
+    commonjs(commonjsConfig),
     uglify()
   ];
 }
