@@ -2,14 +2,14 @@
   "name": "@duck-tools/site",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "web-server.js",
   "scripts": {
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --config webpack.client.js",
     "build:server": "rollup -c rollup.config.js",
     "heroku-postbuild": "npm run build",
     "jest": "jest",
-    "start": "node index.js",
+    "start": "node web-server.js",
     "test": "npm run jest"
   },
   "author": "",
