@@ -37,9 +37,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export default {
-  input: 'src/web-server.js',
+  input: 'src/server.js',
   output: {
-    file: 'index.js',
+    file: 'web-server.js',
     format: 'cjs'
   },
   external: [
