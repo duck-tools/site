@@ -8,10 +8,14 @@ import ServerApp from './ServerApp';
 const app = express();
 
 function renderApp() {
-  const sheet = new ServerStyleSheet();
-  const App = React.createFactory(ServerApp);
-  const html = ReactDOM.renderToString(sheet.collectStyles(App()));
-  const tags = sheet.getStyleTags();
+  let tags = '';
+  let html = '';
+  if (process.env.SSR_ENABLED) {
+    const sheet = new ServerStyleSheet();
+    const App = React.createFactory(ServerApp);
+    html = ReactDOM.renderToString(sheet.collectStyles(App()));
+    tags = sheet.getStyleTags();
+  }
   return `
     <!DOCTYPE html>
     <html>

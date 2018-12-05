@@ -10,10 +10,13 @@ const commonjsConfig = {
     'node_modules/react/index.js': [
       'cloneElement',
       'Component',
-      'createElement'
+      'createElement',
+      'createContext'
     ],
     'node_modules/react-is/index.js': [
-      'isValidElementType'
+      'isElement',
+      'isValidElementType',
+      'ForwardRef'
     ]
   }
 };
@@ -44,7 +47,8 @@ export default {
   },
   external: [
     'express',
-    'stream'
+    'stream',
+    'path'
   ],
   plugins
 }

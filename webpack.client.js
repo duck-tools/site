@@ -7,6 +7,7 @@ module.exports = Object.assign({
   devtool: 'source-map',
   output: {
     filename: 'client.bundle.js',
-    path: resolve(__dirname, './assets')
+    path: resolve(__dirname, './assets'),
+    publicPath: 'assets/'
   }
 }, base);
