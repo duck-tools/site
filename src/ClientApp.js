@@ -1,9 +1,16 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot, render } from 'react-dom';
 import App from './App';
 
 function ServerApp() {
-  return <App />;
+  return (
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
 }
 
-render(<ServerApp />, document.getElementById('root'));
+const root = document.getElementById('root');
+// createRoot(root).render(<App />);
+
+render(<ServerApp />, root);

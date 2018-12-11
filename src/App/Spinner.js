@@ -43,6 +43,8 @@ export default function Spinner(props) {
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       {...props}
+      width={props.size}
+      height={props.size}
     >
       <SpinnerCircle
         fill="none"

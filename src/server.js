@@ -35,4 +35,5 @@ app.use('/assets', express.static(path.join('assets')));
 
 app.use((req, res) => res.send(renderApp()));
 
-app.listen(process.env.PORT || 3000, () => console.log('App started'));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`App started on port ${port}`));

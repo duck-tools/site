@@ -17,12 +17,15 @@ const commonjsConfig = {
       'isElement',
       'isValidElementType',
       'ForwardRef'
+    ],
+    'node_modules/react-cache/index.js': [
+      'unstable_createResource'
     ]
   }
 };
 
 let plugins = [
-  babel(),
+  babel({ runtimeHelpers: true }),
   resolve(),
   commonjs(commonjsConfig)
 ];
