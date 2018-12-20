@@ -11,7 +11,8 @@ const commonjsConfig = {
       'cloneElement',
       'Component',
       'createElement',
-      'createContext'
+      'createContext',
+      'useState'
     ],
     'node_modules/react-is/index.js': [
       'isElement',

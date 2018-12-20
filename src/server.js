@@ -1,9 +1,5 @@
 import express from 'express';
-import React from 'react';
-import ReactDOM from 'react-dom/server';
-import { ServerStyleSheet } from 'styled-components';
 import path from 'path';
-import ServerApp from './ServerApp';
 
 const app = express();
 
