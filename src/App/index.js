@@ -1,20 +1,11 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import Spinner from './Spinner';
+import React from 'react';
 import AppContext from './context';
-
-const Wrapper = styled.div`
-  color: blue;
-`;
-
-function Hello({ name = 'React' }) {
-  return <Wrapper>Hello, {name}</Wrapper>;
-}
+import Layout from './Layout';
 
 export default function App(props) {
   return (
     <AppContext {...props}>
-      <Hello />
+      <Layout />
     </AppContext>
   );
 }

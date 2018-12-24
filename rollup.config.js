@@ -4,6 +4,10 @@ import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 
+const resolveConfig = {
+  jail: './src'
+};
+
 const commonjsConfig = {
   include: 'node_modules/**',
   namedExports: {
@@ -12,7 +16,8 @@ const commonjsConfig = {
       'Component',
       'createElement',
       'createContext',
-      'useState'
+      'useState',
+      'useContext'
     ],
     'node_modules/react-is/index.js': [
       'isElement',
@@ -27,14 +32,14 @@ const commonjsConfig = {
 
 let plugins = [
   babel({ runtimeHelpers: true }),
-  resolve(),
+  resolve(resolveConfig),
   commonjs(commonjsConfig)
 ];
 
 if (process.env.NODE_ENV === 'production') {
   plugins = [
     babel(),
-    resolve(),
+    resolve(resolveConfig),
     replace({
       ['process.env.NODE_ENV']: JSON.stringify('production')
     }),
@@ -50,9 +55,15 @@ export default {
     format: 'cjs'
   },
   external: [
+    '@babel/runtime/helpers/extends',
+    '@babel/runtime/helpers/slicedToArray',
     'express',
     'stream',
-    'path'
+    'path',
+    'prop-types',
+    'styled-components',
+    'react',
+    'react-dom/server'
   ],
   plugins
 }
