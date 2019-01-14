@@ -1,5 +1,5 @@
 import React from 'react';
 
-export function Authenticated() {
+export default function Authenticated() {
   return <>Authenticated</>;
 }

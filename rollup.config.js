@@ -38,10 +38,11 @@ let plugins = [
 
 if (process.env.NODE_ENV === 'production') {
   plugins = [
-    babel(),
+    babel({ runtimeHelpers: true }),
     resolve(resolveConfig),
     replace({
-      ['process.env.NODE_ENV']: JSON.stringify('production')
+      ['process.env.NODE_ENV']: JSON.stringify('production'),
+      ['process.env.SSR_ENABLED']: JSON.stringify(false)
     }),
     commonjs(commonjsConfig),
     uglify()

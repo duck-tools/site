@@ -20,6 +20,7 @@ function renderApp() {
     <!DOCTYPE html>
     <html>
       <head>
+        <meta name="viewport" contnet="width=device-width">
         <title>Duck Tools</title>
         ${tags}
       </head>
