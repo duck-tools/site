@@ -64,7 +64,11 @@ export default {
     'prop-types',
     'styled-components',
     'react',
-    'react-dom/server'
+    'react-dom/server',
+    'compression',
+    'passport',
+    'passport-auth0',
+    'express-session'
   ],
   plugins
 }

@@ -1,3 +1,6 @@
+# dev secrets
+.env
+
 # ignore compiled items
 web-server.js
 assets/
