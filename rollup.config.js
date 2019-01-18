@@ -50,7 +50,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export default {
-  input: 'src/server.js',
+  input: 'src/server/index.js',
   output: {
     file: 'web-server.js',
     format: 'cjs'
