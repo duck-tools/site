@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
 import ServerApp from '../ServerApp';
 
-export function renderApp() {
+export function renderApp(data) {
   let tags = '';
   let html = '';
   if (process.env.SSR_ENABLED) {
@@ -21,7 +21,7 @@ export function renderApp() {
         ${tags}
       </head>
       <body>
-        <div id="root">${html}</div>
+        <div id="root" data-app='${JSON.stringify(data)}'>${html}</div>
       </body>
       <script src="/assets/client.bundle.js"></script>
     </html>

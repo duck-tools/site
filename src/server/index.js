@@ -12,7 +12,10 @@ app.use(configureSession());
 app.use('/assets', express.static(path.join('assets')));
 app.use('/', authRouter);
 
-app.use((req, res) => res.send(renderApp()));
+app.use((req, res) => {
+  const isAuthenticated = !!req.user;
+  res.send(renderApp({ isAuthenticated }));
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`App started on port ${port}`));
