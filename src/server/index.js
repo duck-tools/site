@@ -10,6 +10,7 @@ const app = express();
 app.use(compression());
 app.use(configureSession());
 app.use('/assets', express.static(path.join('assets')));
+app.use('/', express.static(path.join('assets')));
 app.use('/', authRouter);
 
 app.use((req, res) => {

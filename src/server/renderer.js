@@ -23,7 +23,7 @@ export function renderApp(data) {
       <body>
         <div id="root" data-app='${JSON.stringify(data)}'>${html}</div>
       </body>
-      <script src="/assets/client.bundle.js"></script>
+      <script src="/client.bundle.js"></script>
     </html>
   `;
 }

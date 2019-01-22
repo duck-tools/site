@@ -1,4 +1,8 @@
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { resolve } = require('path');
+
+const isProd = process.env.NODE_ENV === 'production'; 
 
 module.exports = {
   module: {
@@ -8,5 +12,18 @@ module.exports = {
       include: [resolve(__dirname, './src')]
     }]
   },
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'
+  plugins: [
+    new CleanWebpackPlugin(['assets']),
+    isProd && new WorkboxWebpackPlugin.GenerateSW({
+      clientsClaim: true,
+      exclude: [/\.map$/, /asset-manifest\.json$/],
+      importWorkboxFrom: 'cdn',
+      navigateFallback: `${process.env.PUBLIC_URL || 'http://localhost:3000'}/index.html`,
+      navigateFallbackBlacklist: [
+        new RegExp('^/_'),
+        new RegExp('/[^/]+\\.[^/]+$')
+      ]
+    })
+  ].filter(Boolean),
+  mode: isProd ? 'production' : 'development'
 };

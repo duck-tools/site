@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot, render } from 'react-dom';
 import App from './App';
+import { register, unregister } from './serviceWorker';
 
 const root = document.getElementById('root');
 const appData = JSON.parse(root.dataset.app);
@@ -17,3 +18,9 @@ function ServerApp() {
 }
 
 render(<ServerApp />, root);
+
+if (process.env.NODE_ENV === 'production') {
+  register();
+} else {
+  unregister();
+}
