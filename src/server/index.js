@@ -2,11 +2,13 @@ import express from 'express';
 import compression from 'compression';
 import path from 'path';
 import { configureSession } from './config/session';
+import { restrictSSL } from './config/ssl';
 import { renderApp } from './renderer';
 import { authRouter } from './routes/auth';
 
 const app = express();
 
+app.use(restrictSSL());
 app.use(compression());
 app.use(configureSession());
 app.use('/assets', express.static(path.join('assets')));
