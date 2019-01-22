@@ -14,7 +14,7 @@ export function renderApp(data) {
   }
   return `
     <!DOCTYPE html>
-    <html>
+    <html lang="en-us">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Duck Tools</title>
@@ -22,8 +22,9 @@ export function renderApp(data) {
       </head>
       <body>
         <div id="root" data-app='${JSON.stringify(data)}'>${html}</div>
+        <noscript>Javascript not enabled? No app for you!</noscript>
       </body>
-      <script src="/client.bundle.js"></script>
+      <script src="/assets/client.bundle.js"></script>
     </html>
   `;
 }
