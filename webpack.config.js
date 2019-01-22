@@ -20,8 +20,9 @@ module.exports = {
       importWorkboxFrom: 'cdn',
       navigateFallback: `${process.env.PUBLIC_URL || 'http://localhost:3000'}/index.html`,
       navigateFallbackBlacklist: [
-        new RegExp('^/_'),
-        new RegExp('/[^/]+\\.[^/]+$')
+        /^\/callback/,
+        /^\/login/,
+        /^\/logout/
       ]
     })
   ].filter(Boolean),
