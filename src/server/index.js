@@ -28,7 +28,15 @@ app.use((req, res) => {
 const port = process.env.PORT || 3000;
 if (process.env.LOCAL_HTTPS) {
   fs.readFile('server.key', (err, key) => {
+    if (err) {
+      console.err('Error reading server key', err);
+      return;
+    }
     fs.readFile('server.cert', (err, cert) => {
+      if (err) {
+        console.err('Error reading server cert', err);
+        return;
+      }
       https.createServer({ key, cert }, app)
         .listen(port, () => console.log(`App started on port ${port}`));
     });
