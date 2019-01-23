@@ -1,9 +1,10 @@
 export function restrictSSL() {
   return (req, res, next) => {
-    if (req.secure || process.env.NODE_ENV !== 'production') {
+    if (req.secure) {
       next();
     } else {
-      res.redirect(`https://${req.headers.host}${req.url}`);
+      const path = `https://${req.headers.host}${req.url}`;
+      res.redirect(path);
     }
   };
 }

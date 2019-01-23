@@ -18,7 +18,7 @@ module.exports = {
       clientsClaim: true,
       exclude: [/\.map$/, /asset-manifest\.json$/],
       importWorkboxFrom: 'cdn',
-      navigateFallback: `${process.env.PUBLIC_URL || 'http://localhost:3000'}/index.html`,
+      navigateFallback: `${process.env.PUBLIC_URL || 'http://localhost:3000'}/`,
       navigateFallbackBlacklist: [
         /^\/callback/,
         /^\/login/,
