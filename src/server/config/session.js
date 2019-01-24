@@ -2,9 +2,7 @@ import session from 'express-session';
 import passport from 'passport';
 import Auth0Strategy from 'passport-auth0';
 
-if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
-}
 
 const sessionSettings = {
   secret: process.env.COOKIE_SECRET || 'wookie bender',

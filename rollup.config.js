@@ -68,7 +68,10 @@ export default {
     'compression',
     'passport',
     'passport-auth0',
-    'express-session'
+    'express-session',
+    'webpack',
+    'webpack-hot-middleware',
+    'webpack-dev-middleware'
   ],
   plugins
 }

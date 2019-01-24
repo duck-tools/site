@@ -5,19 +5,19 @@ import { register, unregister } from './serviceWorker';
 
 const root = document.getElementById('root');
 const appData = JSON.parse(root.dataset.app);
-// createRoot(root).render(<App />);
 
-function ServerApp() {
-  return (
-    <React.StrictMode>
-      <React.ConcurrentMode>
-        <App {...appData} />
-      </React.ConcurrentMode>
-    </React.StrictMode>
+function ServerApp({ enableStrict }) {
+  const body = (
+    <App {...appData} />
   );
+
+  return enableStrict
+    ? <React.StrictMode><React.ConcurrentMode>{body}</React.ConcurrentMode></React.StrictMode>
+    : body;
 }
 
-render(<ServerApp />, root);
+//render(<ServerApp />, root);
+createRoot(root).render(<ServerApp />);
 
 if (process.env.NODE_ENV === 'production') {
   register();

@@ -1,6 +1,8 @@
+const webpack = require('webpack');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { resolve } = require('path');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isProd = process.env.NODE_ENV === 'production'; 
 
@@ -13,7 +15,9 @@ module.exports = {
     }]
   },
   plugins: [
-    new CleanWebpackPlugin(['assets']),
+    process.env.USE_DEV && new webpack.HotModuleReplacementPlugin(),
+    process.env.USE_DEV && new BundleAnalyzerPlugin(),
+    !process.env.USE_DEV && new CleanWebpackPlugin(['assets']),
     isProd && new WorkboxWebpackPlugin.GenerateSW({
       clientsClaim: true,
       exclude: [/\.map$/, /asset-manifest\.json$/],
