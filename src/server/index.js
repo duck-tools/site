@@ -11,7 +11,7 @@ import { authRouter } from './routes/auth';
 
 const app = express();
 
-if (process.env.LOCAL_HTTPS) {
+if (process.env.LOCAL_HTTPS || process.env.NODE_ENV === 'production') {
   app.use(restrictSSL());
 }
 app.use(compression());

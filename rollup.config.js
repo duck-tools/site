@@ -5,7 +5,6 @@ import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 
 const resolveConfig = {
-  jail: './src'
 };
 
 const commonjsConfig = {
@@ -71,7 +70,9 @@ export default {
     'express-session',
     'webpack',
     'webpack-hot-middleware',
-    'webpack-dev-middleware'
+    'webpack-dev-middleware',
+    'https',
+    'fs'
   ],
   plugins
 }
