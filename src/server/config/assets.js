@@ -1,12 +1,12 @@
 import express from 'express';
 import path from 'path';
-import webpack from 'webpack';
-import dev from 'webpack-dev-middleware';
-import hot from 'webpack-hot-middleware';
 
 const assets = express();
 
 if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack');
+  const dev = require('webpack-dev-middleware');
+  const hot = require('webpack-hot-middleware');
   const config = require('./webpack.client');
   const compiler = webpack(config);
 
