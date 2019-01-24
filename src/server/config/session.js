@@ -1,4 +1,5 @@
 import session from 'express-session';
+import redisStoreFactory from 'connect-redis';
 import passport from 'passport';
 import Auth0Strategy from 'passport-auth0';
 
@@ -14,7 +15,12 @@ const sessionSettings = {
 };
 
 if (process.env.NODE_ENV === 'production') {
+  const RedisStore = redisStoreFactory(session);
+
   sessionSettings.cookie.secure = true;
+  sessionSettings.store = new RedisStore({
+    url: process.env.REDIS_URL
+  });
 }
 
 const strategy = new Auth0Strategy({

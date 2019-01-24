@@ -72,7 +72,8 @@ export default {
     'webpack-hot-middleware',
     'webpack-dev-middleware',
     'https',
-    'fs'
+    'fs',
+    'connect-redis'
   ],
   plugins
 }
