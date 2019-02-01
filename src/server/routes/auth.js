@@ -10,7 +10,11 @@ authRouter.get('/login', passport.authenticate('auth0'), (req, res) => {
 authRouter.get('/callback', (req, res, next) => {
   console.log('trying to do a thing');
   passport.authenticate('auth0', (err, user, info) => {
-    if (err) { return next(err); }
+    if (err) {
+      console.error('an error has occurred attempting to authenticate with auth0');
+      console.error(err);
+      return next(err);
+    }
     if (!user) { return res.redirect('/login'); }
     console.log('attempting to log in');
     req.logIn(user, err => {
