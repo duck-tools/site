@@ -16,7 +16,7 @@ authRouter.get('/callback', (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      console.log('no user?')
+      console.log(`user is ${user}`)
       return res.redirect('/login');
     }
     console.log('attempting to log in');
