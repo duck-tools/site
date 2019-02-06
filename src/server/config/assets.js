@@ -22,8 +22,9 @@ if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
   assets.use(csp({
     directives: {
       defaultSrc: ["'self'"],
+      styleSrc: ["'unsafe-inline'"],
       reportUri: '/report-violation',
-      workerSrc: ["'worker-src'"]
+      workerSrc: ["'self'"]
     },
     loose: true,
   }));
