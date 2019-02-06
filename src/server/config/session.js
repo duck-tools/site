@@ -32,7 +32,7 @@ const sessionSettings = {
 if (process.env.NODE_ENV === 'production') {
   const RedisStore = redisStoreFactory(session);
 
-  sessionConfig.cookie.secure = true;
+  sessionSettings.cookie.secure = true;
   sessionSettings.store = new RedisStore({
     url: process.env.REDIS_URL
   });
