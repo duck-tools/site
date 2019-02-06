@@ -10,6 +10,10 @@ import { authRouter } from './routes/auth';
 
 const app = express();
 
+if (process.env.NODE_ENV === 'production') {
+  app.enable('trust proxy');
+}
+
 app.use(compression());
 app.use(configureSession());
 
