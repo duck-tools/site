@@ -3,6 +3,7 @@ import session from 'express-session';
 import redisStoreFactory from 'connect-redis';
 import passport from 'passport';
 import Auth0Strategy from 'passport-auth0';
+import hsts from 'hsts';
 
 const sessionConfig = express();
 
@@ -20,6 +21,10 @@ function enforceSsl(req, res, next) {
 
 if (process.env.NODE_ENV === 'production') {
   sessionConfig.use(enforceSsl);
+  sessionConfig.use(hsts({
+    maxAge: 31536000,
+    setIf: req => req.secure || req.headers['x-forwarded-proto'] === 'https'
+  }))
 }
 
 const sessionSettings = {

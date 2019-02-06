@@ -73,7 +73,9 @@ export default {
     'webpack-dev-middleware',
     'https',
     'fs',
-    'connect-redis'
+    'connect-redis',
+    'hsts',
+    'helmet-csp'
   ],
   plugins
 }
