@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import csp from 'helmet-csp';
 
 const assets = express();
 
@@ -18,6 +19,14 @@ if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
 } else {
   assets.use('/assets', express.static(path.join('assets')));
   assets.use('/', express.static(path.join('assets')));
+  assets.use(csp({
+    directives: {
+      defaultSrc: ["'self'"],
+      reportUri: '/report-violation',
+      workerSrc: ["'worker-src'"]
+    },
+    loose: true,
+  }))
 }
 
 export function configureAssets() {
