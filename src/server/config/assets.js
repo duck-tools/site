@@ -10,7 +10,6 @@ if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
   const config = require('./webpack.client');
   const compiler = webpack(config);
 
-  console.log(`dev middleware publicPath is ${config.output.publicPath}`);
   assets.use(dev(compiler, {
     publicPath: config.output.publicPath
   }));

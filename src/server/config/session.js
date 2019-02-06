@@ -7,6 +7,13 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+function enforceSsl(req, res, next) {
+  if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(`https://${req.get('Host')}${req.url}`);
+  }
+  return next();
+}
+
 const sessionSettings = {
   secret: process.env.COOKIE_SECRET || 'wookie bender',
   cookie: {},
@@ -17,15 +24,9 @@ const sessionSettings = {
 if (process.env.NODE_ENV === 'production') {
   const RedisStore = redisStoreFactory(session);
 
-  // sessionSettings.cookie.secure = true;
   sessionSettings.store = new RedisStore({
     url: process.env.REDIS_URL
   });
-}
-
-function strategyCallback(accessToken, refreshToken, extraParams, profile, done) {
-  console.log(`I'm back from auth0`);
-  return done(null, profile);
 }
 
 const strategy = new Auth0Strategy({
@@ -33,7 +34,9 @@ const strategy = new Auth0Strategy({
   clientID: process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   callbackURL: process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
-}, strategyCallback);
+}, (accessToken, refreshToken, extraParams, profile, done) => {
+  return done(null, profile);
+});
 
 passport.use(strategy);
 
@@ -47,6 +50,7 @@ passport.deserializeUser((user, done) => {
 
 export function configureSession() {
   return [
+    enforceSsl,
     session(sessionSettings),
     passport.initialize(),
     passport.session()
