@@ -75,7 +75,8 @@ export default {
     'fs',
     'connect-redis',
     'hsts',
-    'helmet-csp'
+    'helmet-csp',
+    'frameguard'
   ],
   plugins
 }

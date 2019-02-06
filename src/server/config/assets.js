@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import csp from 'helmet-csp';
+import frameguard from 'frameguard';
 
 const assets = express();
 
@@ -28,6 +29,8 @@ if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
     },
     loose: true,
   }));
+
+  assets.use(frameguard({ action: 'deny' }));
 
   assets.post('/report-violations', (req, res) => {
     if (req.body) {
