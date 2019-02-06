@@ -12,6 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 function enforceSsl(req, res, next) {
   if (req.headers['x-forwarded-proto'] !== 'https') {
+    console.log('request was not https');
     return res.redirect(`https://${req.get('Host')}${req.url}`);
   }
   return next();
