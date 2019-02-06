@@ -5,7 +5,6 @@ import https from 'https';
 import fs from 'fs';
 import { configureAssets } from './config/assets';
 import { configureSession } from './config/session';
-import { restrictSSL } from './config/ssl';
 import { renderApp } from './renderer';
 import { authRouter } from './routes/auth';
 

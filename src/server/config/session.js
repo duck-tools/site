@@ -1,17 +1,24 @@
+import express from 'express';
 import session from 'express-session';
 import redisStoreFactory from 'connect-redis';
 import passport from 'passport';
 import Auth0Strategy from 'passport-auth0';
+
+const sessionConfig = express();
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
 function enforceSsl(req, res, next) {
-  if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
     return res.redirect(`https://${req.get('Host')}${req.url}`);
   }
   return next();
+}
+
+if (process.env.NODE_ENV === 'production') {
+  sessionConfig.use(enforceSsl);
 }
 
 const sessionSettings = {
@@ -24,6 +31,7 @@ const sessionSettings = {
 if (process.env.NODE_ENV === 'production') {
   const RedisStore = redisStoreFactory(session);
 
+  sessionSettings.cookie.secure = true;
   sessionSettings.store = new RedisStore({
     url: process.env.REDIS_URL
   });
@@ -48,11 +56,14 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+if (process.env.NODE_ENV === 'production') {
+  sessionConfig.enable('trust proxy');
+}
+
+sessionConfig.use(session(sessionSettings));
+sessionConfig.use(passport.initialize());
+sessionConfig.use(passport.session());
+
 export function configureSession() {
-  return [
-    enforceSsl,
-    session(sessionSettings),
-    passport.initialize(),
-    passport.session()
-  ];
+  return sessionConfig;
 }
