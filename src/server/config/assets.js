@@ -26,7 +26,16 @@ if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
       workerSrc: ["'worker-src'"]
     },
     loose: true,
-  }))
+  }));
+
+  assets.post('/report-violations', (req, res) => {
+    if (req.body) {
+      console.log('CSP Violation: ', req.body);
+    } else {
+      console.log('CSP Violation: No data received');
+    }
+    res.status(204).end();
+  });
 }
 
 export function configureAssets() {
