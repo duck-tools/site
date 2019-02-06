@@ -76,7 +76,8 @@ export default {
     'connect-redis',
     'hsts',
     'helmet-csp',
-    'frameguard'
+    'frameguard',
+    'dont-sniff-mimetype'
   ],
   plugins
 }
