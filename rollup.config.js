@@ -4,32 +4,44 @@ import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 
+const resolveConfig = {
+};
+
 const commonjsConfig = {
   include: 'node_modules/**',
   namedExports: {
     'node_modules/react/index.js': [
       'cloneElement',
       'Component',
-      'createElement'
+      'createElement',
+      'createContext',
+      'useState',
+      'useContext'
     ],
     'node_modules/react-is/index.js': [
-      'isValidElementType'
+      'isElement',
+      'isValidElementType',
+      'ForwardRef'
+    ],
+    'node_modules/react-cache/index.js': [
+      'unstable_createResource'
     ]
   }
 };
 
 let plugins = [
-  babel(),
-  resolve(),
+  babel({ runtimeHelpers: true }),
+  resolve(resolveConfig),
   commonjs(commonjsConfig)
 ];
 
 if (process.env.NODE_ENV === 'production') {
   plugins = [
-    babel(),
-    resolve(),
+    babel({ runtimeHelpers: true }),
+    resolve(resolveConfig),
     replace({
-      ['process.env.NODE_ENV']: JSON.stringify('production')
+      ['process.env.NODE_ENV']: JSON.stringify('production'),
+      ['process.env.SSR_ENABLED']: JSON.stringify(false)
     }),
     commonjs(commonjsConfig),
     uglify()
@@ -37,14 +49,35 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export default {
-  input: 'src/server.js',
+  input: 'src/server/index.js',
   output: {
     file: 'web-server.js',
     format: 'cjs'
   },
   external: [
+    '@babel/runtime/helpers/extends',
+    '@babel/runtime/helpers/slicedToArray',
     'express',
-    'stream'
+    'stream',
+    'path',
+    'prop-types',
+    'styled-components',
+    'react',
+    'react-dom/server',
+    'compression',
+    'passport',
+    'passport-auth0',
+    'express-session',
+    'webpack',
+    'webpack-hot-middleware',
+    'webpack-dev-middleware',
+    'https',
+    'fs',
+    'connect-redis',
+    'hsts',
+    'helmet-csp',
+    'frameguard',
+    'dont-sniff-mimetype'
   ],
   plugins
 }

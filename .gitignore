@@ -1,3 +1,13 @@
+.vscode
+
+# source
+node_modules
+
+# dev secrets
+.env
+server.key
+server.cert
+
 # ignore compiled items
 web-server.js
 assets/

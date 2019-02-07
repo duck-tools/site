@@ -1,10 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import { hot } from 'react-hot-loader/root';
+import AppContext from './context';
+import Layout from './Layout';
 
-const Wrapper = styled.div`
-  color: blue;
-`;
-
-export default function Hello({ name = 'React' }) {
-  return <Wrapper>Hello, {name}</Wrapper>;
+function App(props) {
+  return (
+    <AppContext {...props}>
+      <Layout />
+    </AppContext>
+  );
 }
+
+export default hot(App);
