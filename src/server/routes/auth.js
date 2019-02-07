@@ -3,7 +3,7 @@ import passport from 'passport';
 
 export const authRouter = express.Router();
 
-authRouter.get('/login', passport.authenticate('auth0'), (req, res) => {
+authRouter.get('/login', passport.authenticate('auth0', { responseType: 'code', scope: 'openid profile' }), (req, res) => {
   res.redirect('/');
 });
 

@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 export const AuthenticationContext = createContext();
 
 export default function Authentication(props) {
-  const [isAuthenticated, setAuthenticated] = useState(props.isAuthenticated);
+  const [authData] = useState({
+    displayName: props.authData.displayName,
+    picture: props.authData.picture
+  });
   return (
-    <AuthenticationContext.Provider value={isAuthenticated}>
+    <AuthenticationContext.Provider value={authData}>
       {props.children}
     </AuthenticationContext.Provider>
   );
@@ -14,9 +17,9 @@ export default function Authentication(props) {
 
 Authentication.propTypes = {
   children: PropTypes.node.isRequired,
-  isAuthenticated: PropTypes.bool
+  authData: PropTypes.object
 };
 
 Authentication.defaultProps = {
-  isAuthenticated: false
+  authData: {}
 };

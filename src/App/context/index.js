@@ -5,7 +5,7 @@ export {AuthenticationContext} from './authentication';
 
 export default function AppContext(props) {
   return (
-    <Authentication isAuthenticated={props.isAuthenticated}>
+    <Authentication authData={props.authData}>
       {props.children}
     </Authentication>
   )

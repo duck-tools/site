@@ -19,13 +19,14 @@ const Container = styled.div`
 `;
 
 export default function Layout(props) {
-  const isAuthenticated = useContext(AuthenticationContext);
+  const { displayName, picture } = useContext(AuthenticationContext);
+  const isAuthenticated = !!displayName;
 
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       <ThemeProvider theme={theme}>
-        <Container isAuthenticated>
-          { isAuthenticated ? <Authenticated {...props} /> : <Unauthenticated {...props} /> }
+        <Container>
+          { isAuthenticated ? <Authenticated {...props} displayName={displayName} picture={picture} /> : <Unauthenticated {...props} /> }
         </Container>
       </ThemeProvider>
     </React.Suspense>

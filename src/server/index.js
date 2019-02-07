@@ -22,8 +22,13 @@ app.use(configureAssets());
 app.use('/', authRouter);
 
 app.use((req, res) => {
-  const isAuthenticated = !!req.user;
-  res.send(renderApp({ isAuthenticated }));
+  const authData = {};
+  if (!!req.user) {
+    const { displayName, picture } = req.user;
+    authData.displayName = displayName;
+    authData.picture = picture;
+  }
+  res.send(renderApp({ authData }));
 });
 
 const port = process.env.PORT || 3000;
