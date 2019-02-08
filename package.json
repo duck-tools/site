@@ -56,8 +56,8 @@
     "hsts": "^2.1.0",
     "passport": "^0.4.0",
     "passport-auth0": "^1.1.0",
-    "react": "^16.8.0-alpha.1",
-    "react-dom": "^16.8.0-alpha.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "styled-components": "^4.1.3"
   }
 }
