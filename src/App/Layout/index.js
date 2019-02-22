@@ -21,7 +21,7 @@ export default function Layout(props) {
     <React.Suspense fallback={<Spinner />}>
       <ThemeProvider theme={theme}>
         <Container>
-          { isAuthenticated ? <Authenticated {...props} displayName={displayName} picture={picture} /> : <Unauthenticated {...props} /> }
+          { isAuthenticated ? <Authenticated {...props} /> : <Unauthenticated {...props} /> }
         </Container>
       </ThemeProvider>
     </React.Suspense>
