@@ -7,6 +7,7 @@ import { configureAssets } from './config/assets';
 import { configureSession } from './config/session';
 import { renderApp } from './renderer';
 import { authRouter } from './routes/auth';
+import { graphqlRouter } from './routes/graphql';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(configureSession());
 app.use(configureAssets());
 
 app.use('/', authRouter);
+app.use('/', graphqlRouter);
 
 app.use((req, res) => {
   const authData = {};

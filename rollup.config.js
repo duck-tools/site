@@ -77,7 +77,9 @@ export default {
     'hsts',
     'helmet-csp',
     'frameguard',
-    'dont-sniff-mimetype'
+    'dont-sniff-mimetype',
+    'apollo-server',
+    'apollo-server-express'
   ],
   plugins
 }
