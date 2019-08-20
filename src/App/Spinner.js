@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const rotator = keyframes`
@@ -36,15 +37,15 @@ const SpinnerCircle = styled.circle`
   animation: ${dash} 1.4s ease-in-out infinite, ${colors} 3.5s ease-in-out infinite;
 `;
 
-export default function Spinner(props) {
+export default function Spinner({ size=16, ...props }) {
   return (
     <SpinnerSvg
       viewBox="0 0 66 66"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       {...props}
-      width={props.size}
-      height={props.size}
+      width={size}
+      height={size}
     >
       <SpinnerCircle
         fill="none"
@@ -57,3 +58,7 @@ export default function Spinner(props) {
     </SpinnerSvg>
   );
 }
+
+Spinner.propTypes = {
+  size: PropTypes.number
+};

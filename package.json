@@ -40,7 +40,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^6.0.0",
     "webpack": "^4.20.2",
-    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.5.1",
     "webpack-hot-middleware": "^2.24.3",
