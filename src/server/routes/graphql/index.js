@@ -1,17 +1,18 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { resolvers, typedefs } from './queries';
+import gateway from './gateway';
 
 export const graphqlRouter = express.Router();
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  gateway,
+  subscriptions: false,
   context: ({ req }) => {
-    const data = { req };
+    const data = {};
     if (!!req.user) {
-      const { displayName, picture } = req.user;
-      data.profile = { displayName, picture };
+      const { jwt } = req.user;
+      data.jwt = jwt;
     }
     return data;
   }
