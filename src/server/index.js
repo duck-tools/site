@@ -33,7 +33,7 @@ app.use((req, res) => {
   res.send(renderApp({ authData }));
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 if (process.env.LOCAL_HTTPS) {
   fs.readFile('server.key', (err, key) => {
     if (err) {
