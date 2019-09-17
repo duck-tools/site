@@ -2,15 +2,10 @@ import React, { useContext } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { AuthenticationContext } from '../context';
 import Spinner from '../Spinner';
-//import Unauthenticated from './Unauthenticated';
+import { theme } from './theme';
 
 const Authenticated = React.lazy(() => import('./Authenticated'));
 const Unauthenticated = React.lazy(() => import('./Unauthenticated'));
-
-const theme = {
-  screenSizes: {
-  }
-}
 
 const Container = styled.div`
   align-items: baseline;
@@ -23,10 +18,10 @@ export default function Layout(props) {
   const isAuthenticated = !!displayName;
 
   return (
-    <React.Suspense fallback={<div>Loading...</div>}>
+    <React.Suspense fallback={<Spinner />}>
       <ThemeProvider theme={theme}>
         <Container>
-          { isAuthenticated ? <Authenticated {...props} displayName={displayName} picture={picture} /> : <Unauthenticated {...props} /> }
+          { isAuthenticated ? <Authenticated {...props} /> : <Unauthenticated {...props} /> }
         </Container>
       </ThemeProvider>
     </React.Suspense>

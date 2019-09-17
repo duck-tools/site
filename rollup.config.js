@@ -55,6 +55,7 @@ export default {
     format: 'cjs'
   },
   external: [
+    '@apollo/gateway',
     '@babel/runtime/helpers/extends',
     '@babel/runtime/helpers/slicedToArray',
     'express',
@@ -77,7 +78,9 @@ export default {
     'hsts',
     'helmet-csp',
     'frameguard',
-    'dont-sniff-mimetype'
+    'dont-sniff-mimetype',
+    'apollo-server',
+    'apollo-server-express'
   ],
   plugins
 }

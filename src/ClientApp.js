@@ -1,23 +1,39 @@
 import React from 'react';
-import { createRoot, render } from 'react-dom';
-import App from './App';
+import { unstable_createRoot, render } from 'react-dom';
 import { register, unregister } from './serviceWorker';
 
 const root = document.getElementById('root');
-const appData = JSON.parse(root.dataset.app);
 
-function ServerApp({ enableStrict }) {
-  const body = (
-    <App {...appData} />
-  );
+async function loadApp() {
+  const { default: App } = await import(/* webpackPrefetch: true */'./App');
 
-  return enableStrict
-    ? <React.StrictMode><React.ConcurrentMode>{body}</React.ConcurrentMode></React.StrictMode>
-    : body;
+  function UseStrict({ children, enableStrict }) {
+    return enableStrict
+      ? <React.StrictMode>{ children }</React.StrictMode>
+      : <>{ children }</>;
+  }
+
+  function UseConcurrent({ children, enableConcurrent }) {
+    return enableConcurrent
+      ? <React.unstable_ConcurrentMode>{ children }</React.unstable_ConcurrentMode>
+      : <>{ children }</>;
+  }
+
+  function ServerApp({ enableStrict = false, enableConcurrent = false }) {
+    return (
+      <UseStrict enableStrict={enableStrict}>
+        <UseConcurrent enableConcurrent={enableConcurrent}>
+          <App />
+        </UseConcurrent>
+      </UseStrict>
+    );
+  }
+
+  //render(<ServerApp />, root);
+  unstable_createRoot(root).render(<ServerApp enableConcurrent={false} enableStrict={false} />);
 }
 
-//render(<ServerApp />, root);
-createRoot(root).render(<ServerApp />);
+loadApp();
 
 if (process.env.NODE_ENV === 'production') {
   register();

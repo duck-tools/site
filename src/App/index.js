@@ -3,9 +3,9 @@ import { hot } from 'react-hot-loader/root';
 import AppContext from './context';
 import Layout from './Layout';
 
-function App(props) {
+function App() {
   return (
-    <AppContext {...props}>
+    <AppContext>
       <Layout />
     </AppContext>
   );

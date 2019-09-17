@@ -6,6 +6,11 @@ import noSniff from 'dont-sniff-mimetype';
 
 const assets = express();
 
+function cacheControl(req, res, next) {
+  next();
+  res.set('Cache-Control', 'public, max-age=31557600, immutable');
+}
+
 if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');
   const dev = require('webpack-dev-middleware');
@@ -19,8 +24,9 @@ if (process.env.USE_DEV && process.env.NODE_ENV !== 'production') {
 
   assets.use(hot(compiler));
 } else {
-  assets.use('/assets', express.static(path.join('assets')));
-  assets.use('/', express.static(path.join('assets')));
+  const staticAssetsMiddleware = express.static(path.join('assets'));
+  assets.use('/assets', cacheControl, staticAssetsMiddleware);
+  assets.use('/', cacheControl, staticAssetsMiddleware);
   assets.use(csp({
     directives: {
       defaultSrc: ["'self'"],
