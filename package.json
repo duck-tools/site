@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@apollo/federation": "^0.9.4",
+    "@apollo/gateway": "^0.10.4",
     "apollo-server": "^2.8.2",
     "compression": "^1.7.3",
     "connect-redis": "^3.4.0",

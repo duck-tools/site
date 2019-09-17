@@ -1,6 +1,6 @@
-import { ApollowGateway, RemoteGraphQLDataSource } from '@apollo/gateway';
+import { ApolloGateway, RemoteGraphQLDataSource } from '@apollo/gateway';
 
-export default  new ApollowGateway({
+export default  new ApolloGateway({
   serviceList: [
     { name: 'profile', url: process.env.PROFILE_SERVICE_URL }
   ],

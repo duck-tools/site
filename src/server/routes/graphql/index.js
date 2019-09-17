@@ -1,6 +1,5 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import { resolvers, typedefs } from './queries';
 import gateway from './gateway';
 
 export const graphqlRouter = express.Router();

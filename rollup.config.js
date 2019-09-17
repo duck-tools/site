@@ -55,6 +55,7 @@ export default {
     format: 'cjs'
   },
   external: [
+    '@apollo/gateway',
     '@babel/runtime/helpers/extends',
     '@babel/runtime/helpers/slicedToArray',
     'express',
